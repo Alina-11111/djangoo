@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Возраст</title>
+</head>
+<body>
+    <h1>Ваш возраст</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+
+    {% if age is not None %}
+        <p> «{{ submitted_name }}», Вам {{ age }} лет.</p>
+    {% endif %}
+</body>
+</html>
