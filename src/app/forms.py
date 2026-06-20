@@ -23,3 +23,34 @@ class AgeForm(forms.Form):
         max_value=datetime.now().year,
         widget=forms.NumberInput(attrs={'placeholder': 'Введите год рождения'}),
     )
+
+class ColorForm(forms.Form):
+
+    text = forms.CharField(
+    label = 'Текст',
+    max_length=200,
+    widget=forms.TextInput(attrs={'placeholder': 'Введите любую фразу'}),
+    )
+
+    COLOR_CHOICES = [
+        ('red', 'Красный'),
+        ('green', 'Зеленый'),
+        ('blue', 'Синий'),
+        ('purple', 'Фиолетовый'),
+        ('orange', 'Оранжевый'),
+    ]
+
+    color = forms.ChoiceField(
+        label='Выберите цвет',
+        choices=COLOR_CHOICES
+    )
+
+class SecretForm(forms.Form):
+
+    password = forms.CharField(
+    label = 'Пароль',
+    max_length=100,
+    widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль'}),
+    )
+
+    

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from app.forms import NameForm, AgeForm
+from app.forms import NameForm, AgeForm, ColorForm, SecretForm
 from datetime import datetime
 
 def home_page(request):
@@ -42,6 +42,48 @@ def year(request):
         'form': form,
         'age': age,
         'submitted_name': submitted_name,
+    })
+
+def color_view(request):
+    
+    user_text = None
+    chosen_color = None
+    if request.method == 'POST':
+        form = ColorForm(request.POST)
+        if form.is_valid():
+            user_text = form.cleaned_data['text']
+            chosen_color = form.cleaned_data['color']
+    else:
+        form = ColorForm()
+    
+    return render(request, 'app/color.html', {
+        'form': form,
+        'user_text': user_text,
+        'chosen_color': chosen_color,
+    })
+
+
+def password_v(request):
+
+    #user_password = None
+    succes = None
+    error_message = None
+    if request.method == 'POST':
+        form = SecretForm(request.POST)
+        if form.is_valid():
+            user_password = form.cleaned_data['password']
+            if user_password=='django2026':
+                succes=True
+            else:
+                succes = False
+                error_message='Ошибка'
+    else:
+        form = SecretForm()
+    
+    return render(request, 'app/password.html', {
+        'form': form,
+        'succes': succes,
+        'error_message': error_message,
     })
 
 # Create your views here.
