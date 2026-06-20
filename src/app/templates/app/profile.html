@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>{{user_profile.name}}</h1>
+
+    {% if user_profile.age_user >= 18 %}
+        <p> Вы совершеннолетний(-ая), Вам {{ user_profile.age_user }} лет.</p>
+    {% else %}
+        <p>Доступ закрыт</p>
+    {% endif %}
+
+    {% if user_profile.is_premium %}
+        <div style="background-color: gold;">
+            Премиум-аккаунт
+        </div>
+    {% endif %}
+    <h3>Навыки:</h3>
+    <ol>
+        {% for  skill in user_profile.skills %}
+            <li>{{ skill }}</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+    <h1>Продукты</h1>
+    <table>
+        <thead>
+            
+            <tr>
+                <th>№</th>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Статус</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for prod in products%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{ prod.title }}</td>
+                <td {% if prod.price > 20000 %} style="color: red;" {% endif %}> {{prod.price }} руб.</td>
+                <td>
+                    {% if  prod.stock == 0 %}
+                        Нет в наличии
+                    {% elif prod.stock < 3 %}
+                        Осталось мало!
+                    {% else %}
+                        В наличии
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td>
+                    colspan="4">Каталог товаров пуст</td>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

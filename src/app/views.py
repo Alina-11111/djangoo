@@ -86,4 +86,14 @@ def password_v(request):
         'error_message': error_message,
     })
 
+
+def profile_view(request):
+    user_profile = {'name': 'Алексей', 'age_user': 25, 'is_premium': True, 'skills': ['Python', 'Django', 'SQL']}
+    return render (request, 'app/profile.html', {'user_profile': user_profile})
+
+
+def products_v(request):
+    products = [{'title': 'Ноутбук', 'price': 50000, 'stock': 5}, {'title': 'Мышь', 'price': 1500, 'stock': 0}, {'title': 'Монитор', 'price': 12000, 'stock': 2}]
+    return render (request, 'app/products.html', {'products': products})
+
 # Create your views here.
