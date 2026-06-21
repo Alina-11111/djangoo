@@ -1,5 +1,6 @@
 from django import forms
 from datetime import datetime
+from app.models import Customer
 
 
 class NameForm(forms.Form):
@@ -53,4 +54,8 @@ class SecretForm(forms.Form):
     widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль'}),
     )
 
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['firstname', 'lastname', 'age', 'profession']
     

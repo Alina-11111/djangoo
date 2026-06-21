@@ -1,0 +1,10 @@
+
+{% extends 'app/base.html' %}
+
+{% block title %}{{ article.title }} | Мой Сайт{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.body }}</p>
+{% endblock %}

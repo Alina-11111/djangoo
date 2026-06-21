@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from app.forms import NameForm, AgeForm, ColorForm, SecretForm
+from app.forms import NameForm, AgeForm, ColorForm, SecretForm, Customer, CustomerForm
 from datetime import datetime
 
 def home_page(request):
@@ -95,5 +95,22 @@ def profile_view(request):
 def products_v(request):
     products = [{'title': 'Ноутбук', 'price': 50000, 'stock': 5}, {'title': 'Мышь', 'price': 1500, 'stock': 0}, {'title': 'Монитор', 'price': 12000, 'stock': 2}]
     return render (request, 'app/products.html', {'products': products})
+
+
+def homee(request):
+    customers = Customer.objects.all()
+    return render(request, 'app/home.html', {'customers': customers})
+
+
+def add_customer(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = CustomerForm()
+
+    return render(request, 'app/add_customer.html', {'form': form})
 
 # Create your views here.
